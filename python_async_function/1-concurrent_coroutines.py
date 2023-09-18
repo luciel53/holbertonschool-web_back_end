@@ -9,7 +9,6 @@ Use the random module.
 """
 
 import random
-import asyncio
 from typing import List
 
 wait_random = __import__('0-basic_async_syntax').wait_random
@@ -17,8 +16,12 @@ wait_random = __import__('0-basic_async_syntax').wait_random
 
 async def wait_n(n: int, max_delay: int) -> List[float]:
     """ wait_n function """
+    # create the list that will be returned
     list_delay = []
+    # spawn wait_random n times
     for i in range(n):
+        # with the specified max_delay.
         delay = random.uniform(0, max_delay)
+        # add each delay to the list
         list_delay.append(delay)
     return sorted(list_delay)
