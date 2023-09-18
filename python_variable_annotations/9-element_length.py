@@ -8,8 +8,7 @@ def element_length(lst):
 
 """
 
-from typing import Union, List, Tuple, Callable, Sequence, Iterable
-import math
+from typing import List, Tuple, Sequence, Iterable
 
 
 def element_length(lst: Iterable[Sequence]) -> List[Tuple[Sequence, int]]:
