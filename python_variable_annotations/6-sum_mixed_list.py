@@ -4,9 +4,11 @@ Write a type-annotated function sum_mixed_list which takes a list mxd_lst of
 integers and floats and returns their sum as a float.
 """
 
+from typing import Union, List
 
-def sum_mixed_list(input_list: float) -> float:
-    """ Sum_mixed_list function """
-    for i in range(len(input_list)):
+
+def sum_mixed_list(mxd_lst: List[Union[int, float]]) -> float:
+    """ sum_mixed_list function """
+    for i in range(len(mxd_lst)):
         i += 1
-    return sum(input_list)
+    return sum(mxd_lst)
