@@ -7,6 +7,6 @@ returns the floor of the float.
 import math
 
 
-def floor(n:float) -> int:
+def floor(n: float) -> int:
     """ Concat function """
     return math.floor(n)
