@@ -9,4 +9,4 @@ import math
 
 def to_str(n: float) -> str:
     """ Floor function """
-    return math.floor(n)
+    return str(n)
