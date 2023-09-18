@@ -13,6 +13,7 @@ import asyncio
 
 
 async def wait_random(max_delay: int = 10) -> float:
+    """ wait_random function """
     # generates random number that represents the delay
     delay = random.uniform(0, max_delay)
     # coroutine waiting
