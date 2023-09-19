@@ -17,7 +17,7 @@ from typing import List
 async_comprehension = __import__('1-async_comprehension').async_comprehension
 
 
-async def measure_runtime():
+async def measure_runtime() -> float:
     """ measure_runtime function """
     # start time
     start_time = time.time()
