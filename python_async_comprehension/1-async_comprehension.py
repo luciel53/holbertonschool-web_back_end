@@ -9,9 +9,10 @@ over async_generator, then return the 10 random numbers.
 
 import asyncio
 import random
+from typing import Generator
 
 
-async def async_generator():
+async def async_comprehension() -> Generator[float, None, None]:
     """ async_generetor function """
     for i in range(0, 10):
         asyncio.sleep(1)
