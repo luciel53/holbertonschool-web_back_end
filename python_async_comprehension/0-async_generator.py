@@ -13,5 +13,5 @@ import random
 async def async_generator():
     """ async_generetor function """
     for i in range(0, 10):
-        asyncio.sleep(1)
+        await asyncio.sleep(1)
         yield random.uniform(0, 10)
