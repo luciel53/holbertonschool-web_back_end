@@ -44,7 +44,7 @@ class FIFOCache(BaseCaching):
             item1 = next(iter(self.cache_data))
             # delete the first item
             self.cache_data.pop(item1)
-            print("DISCARD {}".format(item1))
+            print("DISCARD: {}".format(item1))
 
     def get(self, key):
         """ get function """
