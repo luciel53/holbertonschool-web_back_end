@@ -39,7 +39,7 @@ class FIFOCache(BaseCaching):
         self.cache_data[key] = item
 
         # If number of items in self.cache_data > that BaseCaching.MAX_ITEMS:
-        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+        if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
             # define that first item is the next item and the first to pop
             item1 = next(iter(self.cache_data))
             # delete the first item
