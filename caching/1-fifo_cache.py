@@ -33,6 +33,7 @@ class FIFOCache(BaseCaching):
         super().__init__()
 
     def put(self, key, item):
+        """ Put function """
         if key in self.cache_data is None or item in self.cache_data is None:
             return
         self.cache_data[key] = item
@@ -46,6 +47,7 @@ class FIFOCache(BaseCaching):
             print("DISCARD " + item1)
 
     def get(self, key):
+        """ get function """
         if key in self.cache_data is None or key not in self.cache_data:
             return None
         # Return the value linked to the key
