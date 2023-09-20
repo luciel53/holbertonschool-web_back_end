@@ -38,8 +38,9 @@ class LRUCache(BaseCaching):
 
         # If number of items in self.cache_data >= that BaseCaching.MAX_ITEMS:
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
+            # checks if key is not yet present in the cache
             if key not in self.cache_data:
-                # stores the last item in a variable that is a tuple
+                # pop the first item added to the dict and the useless
                 lru_item = self.cache_data.popitem(last=False)
                 # just keep the key and store it in another variable
                 just_key = lru_item[0]
@@ -51,7 +52,9 @@ class LRUCache(BaseCaching):
         """ get function """
         if key in self.cache_data is None:
             return None
+        #check if key exists in cache
         if key in self.cache_data:
+            # if yes, moved to the end, it s the latest used
             self.cache_data.move_to_end(key)
             return self.cache_data[key]
 
