@@ -40,7 +40,7 @@ class LRUCache(BaseCaching):
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
             if key not in self.cache_data:
                 # stores the last item in a variable that is a tuple
-                lru_item = self.cache_data.popitem(last = False)
+                lru_item = self.cache_data.popitem(last=False)
                 # just keep the key and store it in another variable
                 just_key = lru_item[0]
                 print("DISCARD: {}".format(just_key))
