@@ -21,12 +21,15 @@ from base_caching import BaseCaching
 
 
 class BasicCache(BaseCaching):
+    """ BasicCache class"""
     def put(self, key, item):
+        """ Put function """
         if key in self.cache_data is None:
             return
         self.cache_data[key] = item
 
     def get(self, key):
+        """ Get function """
         if key in self.cache_data is None or key not in self.cache_data:
             return None
         # Return the value linked to the key
