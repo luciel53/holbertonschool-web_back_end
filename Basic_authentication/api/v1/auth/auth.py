@@ -14,12 +14,10 @@ class Auth():
         """ Require function """
         return (False)
 
-
     def authorization_header(self, request=None) -> str:
         """ authorization header function """
         if request is None:
             return (None)
-
 
     def current_user(self, request=None) -> TypeVar('User'):
         """ current user function """
