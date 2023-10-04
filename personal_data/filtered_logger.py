@@ -81,3 +81,20 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
             )
 
     return (connection)
+
+
+def main() -> None:
+    """ Main function """
+    db = get_db() #  obtain a database connection using get_db
+    cursor = db.cursor()
+
+    cursor.execute("SELECT * FROM users")
+
+    result = cursor.fetchall()
+
+    for row in result:
+        print (row)
+
+
+if __name__ == '__main__':
+    main()
