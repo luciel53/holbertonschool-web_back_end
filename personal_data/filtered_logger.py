@@ -71,7 +71,7 @@ def get_logger() -> logging.Logger:
     return logger
 
 
-def get_db():
+def get_db() -> None:
     """ function to connect a secure database """
     connection = mysql.connector.connection.MySQLConnection(
             user=getenv('PERSONAL_DATA_DB_USERNAME', 'root'),
