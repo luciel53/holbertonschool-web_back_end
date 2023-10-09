@@ -80,6 +80,9 @@ class DB:
         # find user to update by id
         user_to_update = self.find_user_by(id=user_id)
 
+        if user_to_update is None:
+            raise ValueError
+
         # update the user with attributes kwargs
         for key, value in kwargs.items():
             if key:
