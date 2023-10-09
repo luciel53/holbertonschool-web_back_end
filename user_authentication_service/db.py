@@ -63,3 +63,31 @@ class DB:
             raise NoResultFound
 
         return first_row
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """
+        method that takes as argument a required user_id integer and
+        arbitrary keyword arguments, and returns None.
+
+        The method will use find_user_by to locate the user to update, then
+        will update the user’s attributes as passed in the method’s arguments
+        then commit
+        changes to the database.
+
+        If an argument that does not correspond to a user attribute is passed,
+        raise a ValueError.
+        """
+        # find user to update by id
+        user_to_update = self.find_user_by(id=user_id)
+
+        # update the user with attributes kwargs
+        for key, value in kwargs.items():
+            if key:
+                # define attributes
+                setattr(self, key, value)
+            else:
+                raise ValueError
+
+        self._session.commit()
+
+        return user_to_update
