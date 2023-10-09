@@ -85,11 +85,8 @@ class DB:
 
         # update the user with attributes kwargs
         for key, value in kwargs.items():
-            if key:
-                # define attributes
-                setattr(self, key, value)
-            else:
-                raise ValueError
+            # define attributes
+            setattr(self, key, value)
 
         self._session.commit()
 
