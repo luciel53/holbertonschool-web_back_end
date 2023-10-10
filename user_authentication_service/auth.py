@@ -8,6 +8,7 @@ import bcrypt
 from db import DB
 from user import User
 from sqlalchemy.orm.exc import NoResultFound
+from uuid import uuid4
 
 
 def _hash_password(password: str) -> bytes:
@@ -51,7 +52,7 @@ class Auth:
             # if user is already registered, raise value error
             raise ValueError("User {} already exists.".format(email))
 
-    def valid_login(self, email, password) -> bool:
+    def valid_login(self, email: str, password:str) -> bool:
         """ valid login method """
         try:
             # try to locate user by email
