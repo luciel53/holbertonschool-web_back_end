@@ -69,3 +69,8 @@ class Auth:
 
         except Exception:
             return False
+
+    def _generate_uuid() -> str:
+        """ function that returns a string representation of a new uuid4 """
+        uuid = str(uuid.uuid4())
+        return uuid
