@@ -52,7 +52,7 @@ class Auth:
             # if user is already registered, raise value error
             raise ValueError("User {} already exists.".format(email))
 
-    def valid_login(self, email: str, password:str) -> bool:
+    def valid_login(self, email: str, password: str) -> bool:
         """ valid login method """
         try:
             # try to locate user by email
