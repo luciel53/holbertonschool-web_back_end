@@ -50,3 +50,21 @@ class Auth:
         else:
             # if user is already registered, raise value error
             raise ValueError("User {} already exists.".format(email))
+
+    def valid_login(self, email, password) -> bool:
+        """ valid login method """
+        try:
+            # try to locate user by email
+            user = self._db.find_user_by(email=email)
+
+            if user is not None:
+                # if user exists check password, convert password to bytes
+                hashed_password = password.encode('utf-8')
+
+                # check password with bcrypt
+                pwd = bcrypt.checkpw(hashed_password, user.hashed_password)
+
+                return pwd
+
+        except Exception:
+            return False
