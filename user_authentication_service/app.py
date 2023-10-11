@@ -4,11 +4,8 @@ App file
 """
 from os import getenv
 from flask import Flask, jsonify, abort, request, redirect
-from sqlalchemy.orm.exc import NoResultFound
 from flask_cors import (CORS, cross_origin)
-import os
 from auth import Auth
-from user import User
 
 
 app = Flask(__name__)
@@ -87,11 +84,12 @@ def logout():
 
     # Find the user with the requested session ID
     user = AUTH.get_user_from_session_id(session_id_cookie)
-
-    if not user:
+    # if the user exists, destroy session and redirect to GET /
+    if user:
+        AUTH.destroy_session(user.id)
+        return redirect('/', code=302)
+    else:
         abort(403)
-    AUTH.destroy_session(user.id)
-    return redirect('/')
 
 
 if __name__ == "__main__":
