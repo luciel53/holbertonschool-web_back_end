@@ -10,7 +10,7 @@ app = Flask(__name__)
 AUTH = Auth()
 
 
-@app.route('/home', methods=['GET'], strict_slashes=False)
+@app.route('/', methods=['GET'], strict_slashes=False)
 def payload():
     msg = {"message": "Bienvenue"}
     return jsonify(msg)
@@ -67,7 +67,7 @@ the form
 
 
 @app.route('/session', methods=['DELETE'], strict_slashes=False)
-def logout():
+def logout() -> str :
     """
     logout function to respond to the DELETE /sessions route.
     The request is expected to contain the session ID as a cookie with key
@@ -85,7 +85,7 @@ def logout():
     # if the user exists, destroy session and redirect to GET /
     if user:
         AUTH.destroy_session(user.id)
-        return redirect('/home', code=302)
+        return redirect('/', code=302)
     else:
         abort(403)
 
