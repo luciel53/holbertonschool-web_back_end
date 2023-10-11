@@ -123,7 +123,7 @@ class Auth:
 
             if user is not None:
                 # update corresponding user's session ID to none
-                self._db.update_user(user, session_id=None)
+                self._db.update_user(user.id, session_id=None)
 
         except NoResultFound:
             return None
