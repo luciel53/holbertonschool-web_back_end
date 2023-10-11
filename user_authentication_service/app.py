@@ -10,7 +10,7 @@ app = Flask(__name__)
 AUTH = Auth()
 
 
-@app.route('/', methods=['GET'], strict_slashes=False)
+@app.route('/home', methods=['GET'], strict_slashes=False)
 def payload():
     msg = {"message": "Bienvenue"}
     return jsonify(msg)
@@ -57,7 +57,7 @@ the form
     # check login informations
     if AUTH.valid_login(email, password):
         # create session for user and generate a new id
-        session_id = AUTH.create_session(email)
+        session_id = AUTH.create_session(email=email)
         response = jsonify({"email": email, "message": "logged in"})
         # store session id inasmuch as cookie
         response.set_cookie('session_id', session_id)
@@ -85,7 +85,7 @@ def logout():
     # if the user exists, destroy session and redirect to GET /
     if user:
         AUTH.destroy_session(user.id)
-        return redirect('/', code=302)
+        return redirect('/home', code=302)
     else:
         abort(403)
 
