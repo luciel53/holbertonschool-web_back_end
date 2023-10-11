@@ -14,7 +14,7 @@ app = Flask(__name__)
 AUTH = Auth()
 
 
-@app.route('/home', methods=['GET'])
+@app.route('/', methods=['GET'])
 def payload():
     msg = {"message": "Bienvenue"}
     return jsonify(msg)
@@ -89,8 +89,8 @@ def logout():
         find_user = AUTH.get_user_from_session_id(session_id_cookie)
         # if the user exists, destroy session and redirect to GET /
         if find_user:
-            AUTH.destroy_session(find_user)
-            return redirect('/home', code=302)
+            AUTH.destroy_session(find_user.id)
+            return redirect('/', code=302)
     except NoResultFound:
         abort(403)
 
