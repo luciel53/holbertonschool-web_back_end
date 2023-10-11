@@ -83,14 +83,14 @@ def logout():
     respond with a 403 HTTP status.
     """
     # get the sessionID as cookie with request
-    session_id = request.cookies.get('session_id')
+    session_id_cookie = request.cookies.get('session_id')
 
     # Find the user with the requested session ID
-    user = AUTH.get_user_from_session_id(session_id)
+    user = AUTH.get_user_from_session_id(session_id_cookie)
     # if the user exists, destroy session and redirect to GET /
     if user:
         AUTH.destroy_session(user.id)
-        return redirect('/', code=302)
+        return redirect('/')
     else:
         abort(403)
 
