@@ -87,12 +87,11 @@ def logout():
 
     # Find the user with the requested session ID
     user = AUTH.get_user_from_session_id(session_id_cookie)
-    # if the user exists, destroy session and redirect to GET /
-    if user:
-        AUTH.destroy_session(user.id)
-        return redirect('/')
-    else:
+
+    if not user:
         abort(403)
+    AUTH.destroy_session(user.id)
+    return redirect('/')
 
 
 if __name__ == "__main__":
