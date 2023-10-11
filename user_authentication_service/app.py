@@ -70,7 +70,7 @@ the form
         abort(401)
 
 
-@app.route('/session', methods=['POST'])
+@app.route('/session', methods=['DELETE'])
 def logout():
     """
     logout function to respond to the DELETE /sessions route.
@@ -90,7 +90,7 @@ def logout():
         # if the user exists, destroy session and redirect to GET /
         if find_user:
             AUTH.destroy_session(find_user)
-            return redirect('/')
+            return redirect('/', code=302)
     except NoResultFound:
         abort(403)
 
