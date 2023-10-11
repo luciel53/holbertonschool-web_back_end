@@ -123,5 +123,5 @@ class Auth:
         if user is not None:
             # update corresponding user's session ID to none
             destroyed = self._db.update_user(user_id, None)
-            return destroyed
+            return None
         return None
