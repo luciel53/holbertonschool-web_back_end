@@ -90,7 +90,7 @@ def logout():
         # if the user exists, destroy session and redirect to GET /
         if find_user:
             AUTH.destroy_session(find_user)
-            return redirect('GET', '/')
+            return redirect('/')
     except NoResultFound:
         abort(403)
 
