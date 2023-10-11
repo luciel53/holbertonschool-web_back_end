@@ -6,8 +6,8 @@ from flask import Flask, jsonify, abort, request, redirect
 from auth import Auth
 
 
-AUTH = Auth()
 app = Flask(__name__)
+AUTH = Auth()
 
 
 @app.route('/', methods=['GET'], strict_slashes=False)
@@ -35,7 +35,7 @@ def users():
         return jsonify({"message": "email already registered"}), 400
 
 
-@app.route('/sessions', methods=['POST'], strict_slashes=False)
+@app.route('/sessions', methods=['POST'])
 def login():
     """
     login function to respond to the POST /sessions route.
@@ -57,7 +57,7 @@ the form
     # check login informations
     if AUTH.valid_login(email, password):
         # create session for user and generate a new id
-        session_id = AUTH.create_session(email=email)
+        session_id = AUTH.create_session(email)
         response = jsonify({"email": email, "message": "logged in"})
         # store session id inasmuch as cookie
         response.set_cookie('session_id', session_id)
@@ -85,7 +85,7 @@ def logout():
     # if the user exists, destroy session and redirect to GET /
     if user:
         AUTH.destroy_session(user.id)
-        return redirect('/')
+        return redirect('/', code=302)
     else:
         abort(403)
 
