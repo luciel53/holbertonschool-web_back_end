@@ -101,7 +101,12 @@ class Auth:
         If the session ID is None or no user is found, return None. Otherwise
         return the corresponding user.
         """
-        if session_id is None or User is None:
+        if session_id is None:
+            return None
+
+        user = User.objects.get(session_id=session_id)
+
+        if user is None:
             return None
 
         else:
