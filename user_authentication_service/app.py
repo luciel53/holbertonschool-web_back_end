@@ -2,9 +2,7 @@
 """
 App file
 """
-from os import getenv
 from flask import Flask, jsonify, abort, request, redirect
-from flask_cors import (CORS, cross_origin)
 from auth import Auth
 
 
