@@ -3,7 +3,8 @@
 App file
 """
 from os import getenv
-from flask import Flask, jsonify, abort, request
+from flask import Flask, jsonify, abort, request, redirect
+from sqlalchemy.orm.exc import NoResultFound
 from flask_cors import (CORS, cross_origin)
 import os
 from auth import Auth
@@ -67,6 +68,31 @@ the form
         return response
     else:
         abort(401)
+
+
+@app.route('/session', methods=['DELETE'])
+def logout():
+    """
+    logout function to respond to the DELETE /sessions route.
+    The request is expected to contain the session ID as a cookie with key
+    "session_id".
+
+    Find the user with the requested session ID. If the user exists destroy
+    the session and redirect the user to GET /. If the user does not exist,
+    respond with a 403 HTTP status.
+    """
+    # get the sessionID as cookie with request
+    session_id_cookie = request.cookies.get('session_id')
+
+    try:
+        # Find the user with the requested session ID
+        find_user = AUTH.get_user_from_session_id(session_id_cookie)
+        # if the user exists, destroy session and redirect to GET /
+        if find_user:
+            AUTH.destroy_session(find_user)
+            return redirect('GET', '/')
+    except NoResultFound:
+        abort(403)
 
 
 if __name__ == "__main__":
