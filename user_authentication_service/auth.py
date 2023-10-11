@@ -110,5 +110,5 @@ class Auth:
             return None
 
         else:
-            self._db.session.get(session_id)
+            self._db.find_user_by(session_id=session_id, user=user)
             return user
