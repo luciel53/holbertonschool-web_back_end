@@ -71,7 +71,7 @@ the form
         abort(401)
 
 
-@app.route('/session', methods=['DELETE'], strict_slash=False)
+@app.route('/session', methods=['DELETE'], strict_slashes=False)
 def logout():
     """
     logout function to respond to the DELETE /sessions route.
