@@ -85,14 +85,13 @@ def logout():
     # get the sessionID as cookie with request
     session_id_cookie = request.cookies.get('session_id')
 
-    try:
-        # Find the user with the requested session ID
-        user = AUTH.get_user_from_session_id(session_id_cookie)
-        # if the user exists, destroy session and redirect to GET /
-        if user:
-            AUTH.destroy_session(user.id)
-            return redirect('/', code=302)
-    except NoResultFound:
+    # Find the user with the requested session ID
+    user = AUTH.get_user_from_session_id(session_id_cookie)
+    # if the user exists, destroy session and redirect to GET /
+    if user:
+        AUTH.destroy_session(user.id)
+        return redirect('/', code=302)
+    else:
         abort(403)
 
 
