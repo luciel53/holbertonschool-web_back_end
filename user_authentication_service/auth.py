@@ -111,4 +111,4 @@ class Auth:
 
         else:
             self._db.session.get(session_id)
-            return User(session_id)
+            return user
