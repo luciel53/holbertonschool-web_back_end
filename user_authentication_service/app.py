@@ -8,6 +8,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from flask_cors import (CORS, cross_origin)
 import os
 from auth import Auth
+from user import User
 
 
 app = Flask(__name__)
@@ -89,7 +90,7 @@ def logout():
         find_user = AUTH.get_user_from_session_id(session_id_cookie)
         # if the user exists, destroy session and redirect to GET /
         if find_user:
-            AUTH.destroy_session(find_user.id)
+            AUTH.destroy_session(id=find_user.id)
             return redirect('/', code=302)
     except NoResultFound:
         abort(403)
