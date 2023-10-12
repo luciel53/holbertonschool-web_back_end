@@ -4,6 +4,7 @@ App file
 """
 from flask import Flask, jsonify, abort, request, redirect
 from auth import Auth
+from sqlalchemy.orm.exc import NoResultFound
 
 
 app = Flask(__name__)
@@ -116,14 +117,15 @@ def get_reset_password_token():
     generate a token and respond with a 200 HTTP status and the following
     JSON payload: {"email": "<user email>", "reset_token": "<reset token>"}
     """
-    # contain form data with the "email" field.
-    email = request.form.get('email')
+    try:
+        # contain form data with the "email" field.
+        email = request.form.get('email')
 
-    if email:
-        # generate a token
-        token_generated = AUTH.get_reset_password_token(email)
-        return jsonify({"email": email, "reset_token": token_generated}), 200
-    else:
+        if email:
+            # generate a token
+            token_generated = AUTH.get_reset_password_token(email)
+            return jsonify({"email": email, "reset_token": token_generated}), 200
+    except NoResultFound:
         abort(403)
 
 
