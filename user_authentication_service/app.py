@@ -139,7 +139,6 @@ def update_password():
 
     If the token is valid, respond with a 200 HTTP code and the following
     JSON payload:
-
     """
     # contain form data with fields "email", "reset_token", "new_password"
     email = request.form.get('email')
@@ -147,10 +146,10 @@ def update_password():
     new_password = request.form.get('new_password')
 
     try:
-        if email and new_password and new_token:
-            # Update the password
-            AUTH.update_password(new_token, new_password)
-            return jsonify({"email": email, "message": "Password updated"}), 200
+        # Update the password
+        AUTH.update_password(new_token, new_password)
+        msg = {"email": email, "message": "Password updated"}
+        return jsonify(msg), 200
 
     except ValueError:
         abort(403)
