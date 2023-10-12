@@ -66,28 +66,18 @@ the form
         abort(401)
 
 
-@app.route('/session', methods=['DELETE'], strict_slashes=False)
-def logout() -> str :
-    """
-    logout function to respond to the DELETE /sessions route.
-    The request is expected to contain the session ID as a cookie with key
-    "session_id".
-
-    Find the user with the requested session ID. If the user exists destroy
-    the session and redirect the user to GET /. If the user does not exist,
-    respond with a 403 HTTP status.
-    """
-    # get the sessionID as cookie with request
-    session_id_cookie = request.cookies.get('session_id')
-
-    # Find the user with the requested session ID
-    user = AUTH.get_user_from_session_id(session_id_cookie)
-    # if the user exists, destroy session and redirect to GET /
+@app.route('/sessions', methods=['DELETE'], strict_slashes=False)
+def logout() -> str:
+    ''' def logout '''
+    session_cookie = request.cookies.get('session_id')
+    user = AUTH.get_user_from_session_id(session_cookie)
     if user:
         AUTH.destroy_session(user.id)
-        return redirect('/', code=302)
+        return redirect('/')
     else:
         abort(403)
+
+
 
 
 if __name__ == "__main__":
