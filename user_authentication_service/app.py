@@ -120,11 +120,9 @@ def get_reset_password_token():
     try:
         # contain form data with the "email" field.
         email = request.form.get('email')
-
-        if email:
-            # generate a token
-            token_generated = AUTH.get_reset_password_token(email)
-            return jsonify({"email": email, "reset_token": token_generated}), 200
+        # generate a token
+        token_generated = AUTH.get_reset_password_token(email)
+        return jsonify({"email": email, "reset_token": token_generated}), 200
     except NoResultFound:
         abort(403)
 
