@@ -142,12 +142,12 @@ def update_password():
     JSON payload:
 
     """
-    # contain form data with fields "email", "reset_token", "new_password"
-    email = request.form.get('email')
-    reset_token = request.form.get('reset_token')
-    new_password = request.form.get('new_password')
-
     try:
+        # contain form data with fields "email", "reset_token", "new_password"
+        email = request.form.get('email')
+        reset_token = request.form.get('reset_token')
+        new_password = request.form.get('new_password')
+
         # Update the password
         AUTH.update_password(reset_token, new_password)
         return jsonify({"email": email, "message": "Password updated"}), 200
