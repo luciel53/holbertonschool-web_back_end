@@ -130,15 +130,15 @@ class Auth:
 
     def get_reset_password_token(self, email: str) -> str:
         """  method to reset the password token """
-        # Find the user corresponding to the email
-        user = self._db.find_user_by(email=email)
+        try:
+            if user:
+                # Find the user corresponding to the email
+                user = self._db.find_user_by(email=email)
+                # generate a new uuid
+                new_uuid = _generate_uuid()
 
-        if user:
-            # generate a new uuid
-            new_uuid = _generate_uuid()
-
-            # update user's reset_token database field
-            self._db.update_user(user.id, reset_token=new_uuid)
-            return new_uuid
-        else:
+                # update user's reset_token database field
+                self._db.update_user(user.id, reset_token=new_uuid)
+                return new_uuid
+        except NoResultFound:
             raise ValueError("User DNE")
