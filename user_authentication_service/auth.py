@@ -140,6 +140,5 @@ class Auth:
             # update user's reset_token database field
             self._db.update_user(user.id, reset_token=new_uuid)
             return new_uuid
-        
         else:
-            return ("User DNE")
+            raise ValueError("User DNE")
