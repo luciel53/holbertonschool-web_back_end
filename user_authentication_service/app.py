@@ -123,7 +123,7 @@ def get_reset_password_token():
         # generate a token
         token_generated = AUTH.get_reset_password_token(email)
         return jsonify({"email": email, "reset_token": token_generated}), 200
-    except NoResultFound:
+    except ValueError:
         abort(403)
 
 
