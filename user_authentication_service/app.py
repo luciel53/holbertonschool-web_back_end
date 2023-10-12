@@ -14,7 +14,7 @@ AUTH = Auth()
 @app.route('/', methods=['GET'], strict_slashes=False)
 def payload():
     msg = {"message": "Bienvenue"}
-    return jsonify(msg), 200
+    return jsonify(msg)
 
 
 @app.route('/users', methods=['POST'], strict_slashes=False)
@@ -147,9 +147,6 @@ def update_password():
         email = request.form.get('email')
         reset_token = request.form.get('reset_token')
         new_password = request.form.get('new_password')
-
-        if email is None or reset_token is None or new_password is None:
-            abort(403)
 
         # Update the password
         AUTH.update_password(reset_token, new_password)
