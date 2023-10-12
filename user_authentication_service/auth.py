@@ -140,3 +140,16 @@ class Auth:
             return new_uuid
         except NoResultFound:
             raise ValueError("User DNE")
+
+    def update_password(self, reset_token: str) -> None:
+        """ Update the password method """
+        try:
+            # find the user corresponding to the reset_token
+            user = self._db.find_user_by(reset_token=reset_token)
+            hashed_password = _hash_password(self.password)
+            self._db.update_user(user.id, hashed_password=hashed_password, reset_token=None)
+
+        except NoResultFound:
+            raise ValueError
+
+
