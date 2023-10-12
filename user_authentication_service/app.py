@@ -143,12 +143,12 @@ def update_password():
     """
     # contain form data with fields "email", "reset_token", "new_password"
     email = request.form.get('email')
-    reset_token = request.form.get('reset_token')
+    token = request.form.get('reset_token')
     new_password = request.form.get('new_password')
 
     try:
         # Update the password
-        AUTH.update_password(reset_token, new_password)
+        AUTH.update_password(token, new_password)
 
     except ValueError:
         abort(403)
