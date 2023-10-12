@@ -12,6 +12,7 @@ AUTH = Auth()
 
 @app.route('/', methods=['GET'], strict_slashes=False)
 def payload():
+    """ payload function"""
     msg = {"message": "Bienvenue"}
     return jsonify(msg)
 
@@ -127,30 +128,32 @@ def get_reset_password_token():
 
 
 @app.route('/reset_password', methods=['PUT'], strict_slashes=False)
-def update_password() -> str:
-    """ Update the password
-    PUT /reset_password
-    Updates password with reset token
-    Return:
-        - 400 if bad request
-        - 403 if not valid reset token
-        - 200 and JSON Payload if valid
+def update_password():
     """
-    try:
-        email = request.form['email']
-        reset_token = request.form['reset_token']
-        new_password = request.form['new_password']
-    except KeyError:
-        abort(400)
+    function in the app module to respond to the PUT /reset_password route.
+
+    The request is expected to contain form data with fields "email",
+    "reset_token" and "new_password".
+
+    Update the password. If the token is invalid, catch the exception and
+    respond with a 403 HTTP code.
+
+    If the token is valid, respond with a 200 HTTP code and the following
+    JSON payload:
+    """
+    # contain form data with fields "email", "reset_token", "new_password"
+    email = request.form.get('email')
+    new_token = request.form.get('reset_token')
+    new_password = request.form.get('new_password')
 
     try:
-        AUTH.update_password(reset_token, new_password)
+        # Update the password
+        AUTH.update_password(new_token, new_password)
+        msg = {"email": email, "message": "Password updated"}
+        return jsonify(msg), 200
+
     except ValueError:
         abort(403)
-
-    msg = {"email": email, "message": "Password updated"}
-    return jsonify(msg), 200
-
 
 
 if __name__ == "__main__":
