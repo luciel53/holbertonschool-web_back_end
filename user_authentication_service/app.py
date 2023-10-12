@@ -1,57 +1,93 @@
 #!/usr/bin/env python3
-''' Flask Module '''
-from flask import Flask, jsonify, request, redirect, abort
+"""
+App file
+"""
+from flask import Flask, jsonify, abort, request, redirect
 from auth import Auth
 
 
-AUTH = Auth()
 app = Flask(__name__)
+AUTH = Auth()
 
 
 @app.route('/', methods=['GET'], strict_slashes=False)
-def message():
-    ''' def message '''
-    return jsonify({"message": "Bienvenue"})
+def payload():
+    msg = {"message": "Bienvenue"}
+    return jsonify(msg)
 
 
 @app.route('/users', methods=['POST'], strict_slashes=False)
-def users() -> str:
-    ''' def users '''
+def users():
+    """
+    implement the end-point to register a user. Define a users function
+    that implements the POST /users route.
+    """
+    # get the data from the form
     email = request.form.get('email')
     password = request.form.get('password')
+
     try:
+        # try to register
         AUTH.register_user(email, password)
         return jsonify({"email": email, "message": "user created"})
     except Exception:
-        return jsonify({"message": "email already registered"})
+        # if the user already exists
+        return jsonify({"message": "email already registered"}), 400
 
 
 @app.route('/sessions', methods=['POST'], strict_slashes=False)
-def session() -> str:
-    ''' def session '''
+def login():
+    """
+    login function to respond to the POST /sessions route.
+
+The request is expected to contain form data with "email" and a "password"
+fields.
+
+If the login information is incorrect, use flask.abort to respond with a
+401 HTTP status.
+
+Otherwise, create a new session for the user, store it the session ID as a
+cookie with key "session_id" on the response and return a JSON payload of
+the form
+    """
+    # get email and password
     email = request.form.get('email')
     password = request.form.get('password')
-    log = AUTH.valid_login(email, password)
-    if log:
-        session_id = AUTH.create_session(email)
+
+    # check login informations
+    if AUTH.valid_login(email, password):
+        # create session for user and generate a new id
+        session_id = AUTH.create_session(email=email)
         response = jsonify({"email": email, "message": "logged in"})
+        # store session id inasmuch as cookie
         response.set_cookie('session_id', session_id)
         return response
     else:
         abort(401)
 
 
-@app.route('/sessions', methods=['DELETE'], strict_slashes=False)
-def logout() -> str:
-    ''' def logout '''
-    session_cookie = request.cookies.get('session_id')
-    user = AUTH.get_user_from_session_id(session_cookie)
+@app.route('/session', methods=['DELETE'], strict_slashes=False)
+def logout() -> str :
+    """
+    logout function to respond to the DELETE /sessions route.
+    The request is expected to contain the session ID as a cookie with key
+    "session_id".
+
+    Find the user with the requested session ID. If the user exists destroy
+    the session and redirect the user to GET /. If the user does not exist,
+    respond with a 403 HTTP status.
+    """
+    # get the sessionID as cookie with request
+    session_id_cookie = request.cookies.get('session_id')
+
+    # Find the user with the requested session ID
+    user = AUTH.get_user_from_session_id(session_id_cookie)
+    # if the user exists, destroy session and redirect to GET /
     if user:
         AUTH.destroy_session(user.id)
-        return redirect('/')
+        return redirect('/', code=302)
     else:
         abort(403)
-
 
 
 if __name__ == "__main__":
