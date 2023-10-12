@@ -14,7 +14,7 @@ AUTH = Auth()
 @app.route('/', methods=['GET'], strict_slashes=False)
 def payload():
     msg = {"message": "Bienvenue"}
-    return jsonify(msg)
+    return jsonify(msg), 200
 
 
 @app.route('/users', methods=['POST'], strict_slashes=False)
