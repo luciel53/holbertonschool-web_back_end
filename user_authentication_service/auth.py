@@ -133,12 +133,13 @@ class Auth:
         # Find the user corresponding to the email
         user = self._db.find_user_by(email=email)
 
-        if user:
+        if user is None:
+            raise ValueError
+
+        else:
             # generate a new uuid
             new_uuid = _generate_uuid()
 
             # update user's reset_token database field
             self._db.update_user(user.id, reset_token=new_uuid)
             return new_uuid
-        else:
-            raise ValueError
