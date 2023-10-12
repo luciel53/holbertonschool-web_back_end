@@ -67,7 +67,7 @@ the form
 
 
 @app.route('/sessions', methods=['DELETE'], strict_slashes=False)
-def logout() -> str :
+def logout() -> str:
     """
     logout function to respond to the DELETE /sessions route.
     The request is expected to contain the session ID as a cookie with key
