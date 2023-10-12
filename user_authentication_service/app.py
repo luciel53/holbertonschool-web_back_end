@@ -148,9 +148,10 @@ def update_password():
         reset_token = request.form.get('reset_token')
         new_password = request.form.get('new_password')
 
-        # Update the password
-        AUTH.update_password(reset_token, new_password)
-        return ({"email": email, "message": "Password updated"}), 200
+        if reset_token:
+            # Update the password
+            AUTH.update_password(reset_token, new_password)
+            return ({"email": email, "message": "Password updated"}), 200
 
     except ValueError:
         abort(403)
