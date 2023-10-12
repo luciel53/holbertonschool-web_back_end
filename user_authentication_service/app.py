@@ -98,7 +98,7 @@ def profile():
 
     # find user by session ID
     user = AUTH.get_user_from_session_id(session_id_cookie)
-    print(user)
+
     if user:
         return jsonify({"email": user.email}), 200
 
