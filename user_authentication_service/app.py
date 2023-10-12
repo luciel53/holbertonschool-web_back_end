@@ -143,17 +143,17 @@ def update_password():
 
     """
     try:
-        # contain form data with fields "email", "reset_token" and "new_password"
+        # contain form data with fields "email", "reset_token", "new_password"
         email = request.form.get('email')
         reset_token = request.form.get('reset_token')
         new_password = request.form.get('new_password')
-    
+
+        # Update the password
         AUTH.update_password(reset_token, new_password)
-    
-        if reset_token:
-            return ({"email": email, "message": "Password updated"}), 200
+        return ({"email": email, "message": "Password updated"}), 200
+
     except ValueError:
-            abort(403)
+        abort(403)
 
 
 if __name__ == "__main__":
