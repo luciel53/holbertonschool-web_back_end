@@ -11,7 +11,9 @@ from typing import (
 )
 import unittest
 from parameterized import parameterized
+from unittest.mock import MagicMock, patch
 import utils
+import requests
 
 access_nested_map = __import__('utils').access_nested_map
 
@@ -42,6 +44,20 @@ class TestAccessNestedMap(unittest.TestCase):
             access_nested_map(nested_map, path)
         exception_msg = "Key not found"
         self.assertEqual(exception_msg, expected_msg)
+
+
+class TestGetJson(unittest.TestCase):
+    """ Tests get json class """
+    @parameterized.expand([
+        # contains dict, path and expected value
+        (("http://example.com"), {"payload": True}),
+        (("http://holberton.io"), {"payload": False}),
+    ])
+    @patch(utils.requests.get)
+    def test_get_json(self, url, test_url):
+        """returns Mock object with json meth that returns test_payload  """
+        url_origin = requests.get(url)
+        self.assertEqual(url_origin, test_url)
 
 
 if __name__ == '__main__':
