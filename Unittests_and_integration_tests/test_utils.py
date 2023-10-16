@@ -50,8 +50,8 @@ class TestGetJson(unittest.TestCase):
     """ Tests get json class """
     @parameterized.expand([
         # contains dict, path and expected value
-        (("http://example.com"), {"payload": True}),
-        (("http://holberton.io"), {"payload": False}),
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False}),
     ])
     @patch('utils.requests.get')
     def test_get_json(self, test_url, test_payload):
