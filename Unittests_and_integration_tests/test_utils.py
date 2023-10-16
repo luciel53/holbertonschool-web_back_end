@@ -11,7 +11,7 @@ from typing import (
 )
 import unittest
 from parameterized import parameterized
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock, patch, Mock
 import utils
 import requests
 
@@ -53,11 +53,20 @@ class TestGetJson(unittest.TestCase):
         (("http://example.com"), {"payload": True}),
         (("http://holberton.io"), {"payload": False}),
     ])
-    @patch(utils.requests.get)
-    def test_get_json(self, url, test_url):
+    @patch('utils.requests.get')
+    def test_get_json(self, test_url, test_payload):
         """returns Mock object with json meth that returns test_payload  """
-        url_origin = requests.get(url)
-        self.assertEqual(url_origin, test_url)
+        # create a mock object
+        mock_object_expected = Mock()
+        mock_object_expected.json.return_value = test_payload
+
+        with patch('utils.requests.get', return_value=mock_object_expected) as mock_request:
+            mock_request.return_value = mock_object_expected
+            # call get_json function
+            result = utils.get_json(test_url)
+
+            # check it
+            self.assertEqual(result, test_payload)
 
 
 if __name__ == '__main__':
