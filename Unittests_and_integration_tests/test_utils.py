@@ -50,16 +50,17 @@ class TestGetJson(unittest.TestCase):
     """ Tests get json class """
     @parameterized.expand([
         # contains dict, path and expected value
-        (("http://example.com"), {"payload": True}),
-        (("http://holberton.io"), {"payload": False}),
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False}),
     ])
+    
     def test_get_json(self, test_url, test_payload):
         """returns Mock object with json meth that returns test_payload  """
         # create a mock object
         mock_object_expected = Mock()
         mock_object_expected.json.return_value = test_payload
 
-        with patch('utils.requests.get', return_value=mock_object_expected) as mock_request:
+        with patch('utils.requests.get') as mock_request:
             mock_request.return_value = mock_object_expected
             # call get_json function
             result = utils.get_json(test_url)
