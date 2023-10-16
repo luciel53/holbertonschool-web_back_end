@@ -32,7 +32,7 @@ class TestAccessNestedMap(unittest.TestCase):
 
     @parameterized.expand([
         # contains dict, path and expected value
-        ({}, ("a",), ""),
+        ({}, ("a",), "Key not found"),
         ({"a": 1}, ("a", "b",), "Key not found"),
     ])
 
