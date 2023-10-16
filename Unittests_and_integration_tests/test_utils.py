@@ -33,7 +33,7 @@ class TestAccessNestedMap(unittest.TestCase):
     @parameterized.expand([
         # contains dict, path and expected value
         ({}, ("a",), ""),
-        ({"a": 1}, ("a", "b",), ""),
+        ({"a": 1}, ("a", "b",), "Error msg"),
     ])
 
     def test_access_nested_map_exception(self, nested_map, path, expected_msg):
