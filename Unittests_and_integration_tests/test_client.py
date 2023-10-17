@@ -19,21 +19,24 @@ import requests
 class TestGithubOrgClient(unittest.TestCase):
     """ Test Github Org Client Class """
     @parameterized.expand([
-        ("https://api.github.com/orgs/google"),
-        ("https://api.github.com/abc"),
+        ("google", {"google": True}),
+        ("abc", {"abc": True}),
     ])
     @patch('client.get_json')
-    def test_org(self, org, mock, expected):
-        """ test org """
-        client = client.GitHubOrgClient(org)
+    def test_org(self, org, expected, mock):
+        # set mock
+        """ Test the org of the client """
         mock.return_value = expected
+        # GithubOrgClient instance
+        client = GithubOrgClient(org)
+        # check
+        self.assertEqual(client.org, expected)
+        # check that the function is called once
+        mock.assert_called_once_with("https://api.github.com/orgs/" + org)
 
-        result = org()
 
-        mock.assert_called_once_with("https://api.github.com/orgs/{org}")
-
-        self.assertEqual(result, expected)
-
+if __name__ == '__main__':
+    unittest.main()
 
 
 
