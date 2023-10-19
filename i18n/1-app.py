@@ -10,12 +10,6 @@ app = Flask(__name__)
 babel = Babel(app)
 
 
-@app.route('/', methods=['GET'])
-def index():
-    """ Return the index page """
-    return render_template('1-index.html')
-
-
 class Config():
     """
     Then instantiate the Babel object in your app. Store it in a
@@ -29,6 +23,12 @@ class Config():
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
+
+
+@app.route('/', methods=['GET'])
+def index():
+    """ Return the index page """
+    return render_template('1-index.html')
 
 
 if __name__ == '__main__':
