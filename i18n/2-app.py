@@ -31,7 +31,8 @@ app.config.from_object(Config)
 @app.route('/', methods=['GET'])
 def index():
     """ Return the index page """
-    return render_template('1-index.html')
+    return render_template('2-index.html')
+
 
 @babel.localeselector
 def get_locale():
