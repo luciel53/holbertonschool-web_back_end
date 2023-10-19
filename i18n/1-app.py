@@ -10,7 +10,7 @@ app = Flask(__name__)
 babel = Babel(app)
 
 
-class Config:
+class Config():
     """
     Then instantiate the Babel object in your app. Store it in a
     module-level variable named babel.
@@ -23,6 +23,8 @@ class Config:
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
+
+app.config.from_object(Config)
 
 
 @app.route('/', methods=['GET'])
