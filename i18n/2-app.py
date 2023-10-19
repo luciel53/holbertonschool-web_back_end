@@ -37,8 +37,7 @@ def index():
 @babel.localeselector
 def get_locale():
     """ function determine the best match with our supported languages """
-    match = request.accept_languages
-    return match.best_match(app.config["LANGUAGES"])
+    return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
 if __name__ == '__main__':
