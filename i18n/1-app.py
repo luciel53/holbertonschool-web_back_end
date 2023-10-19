@@ -10,7 +10,7 @@ app = Flask(__name__)
 babel = Babel(app)
 
 
-class Config():
+class Config:
     """
     Then instantiate the Babel object in your app. Store it in a
     module-level variable named babel.
