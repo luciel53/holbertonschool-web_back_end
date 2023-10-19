@@ -10,6 +10,6 @@ app = Flask(__name__)
 babel = Babel(app)
 
 
-@app.route('/', methods=['GET'], strict_slash=False)
+@app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
