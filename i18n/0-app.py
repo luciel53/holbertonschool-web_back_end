@@ -13,8 +13,8 @@ babel = Babel(app)
 @app.route('/', methods=['GET'])
 def index():
     """ Return the index page """
-    return render_template('index.html')
+    return render_template('0-index.html')
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port="5000",debug=True)
+    app.run(host="0.0.0.0", port="5000", debug=True)
