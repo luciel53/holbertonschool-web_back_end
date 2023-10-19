@@ -33,6 +33,7 @@ def index():
     """ Return the index page """
     return render_template('1-index.html')
 
+@babel.localeselector
 def get_locale():
     """ function determine the best match with our supported languages """
     match = request.accept_languages
