@@ -15,7 +15,8 @@ def index():
     """ Return the index page """
     return render_template('1-index.html')
 
-class config():
+
+class Config():
     """
     Then instantiate the Babel object in your app. Store it in a
     module-level variable named babel.
