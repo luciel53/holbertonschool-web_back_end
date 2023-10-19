@@ -37,7 +37,7 @@ def index():
 def get_locale():
     """ function determine the best match with our supported languages """
     match = request.accept_languages
-    return match.best_match(Config.LANGUAGES)
+    return match.best_match(app.config["LANGUAGES"])
 
 
 if __name__ == '__main__':
