@@ -50,16 +50,18 @@ def index():
     return render_template('5-index.html')
 
 
-def get_user(user_id):
+def get_user():
     """ returns user dict """
-    return users.get(user_id)
+    if request.args.get('login_as'):
+        user = int(request.args.get('login_as'))
+        if user in users:
+            return users.get(user)
 
 
 @app.before_request
 def before_request():
     """ before request function """
-    user_id = request.args.get('login_as')
-    g.user = get_user(int(user_id)) if user_id and int(user_id) in users else None
+    g.user = get_user()
 
 
 if __name__ == '__main__':
