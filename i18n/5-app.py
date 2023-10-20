@@ -58,7 +58,7 @@ def get_user(user_id):
 def before_request(request):
     """ before request function """
     user_id = request.args.get('login_as')
-    g.user = get_user(user_id) if user_id in users else None
+    g.user = get_user(int(user_id)) if user_id and int(user_id) in users else None
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port="5000", debug=True)
