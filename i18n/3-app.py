@@ -10,7 +10,7 @@ app = Flask(__name__)
 babel = Babel(app)
 
 
-class Config():
+class Config(object):
     """
     Then instantiate the Babel object in your app. Store it in a
     module-level variable named babel.
@@ -29,7 +29,7 @@ app.config.from_object('3-app.Config')
 
 
 @babel.localeselector
-def get_locale():
+def get_locale() -> str:
     """ function determine the best match with our supported languages """
     return request.accept_languages.best_match(app.config["LANGUAGES"])
 
