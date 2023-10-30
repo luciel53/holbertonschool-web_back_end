@@ -9,11 +9,11 @@ from functools import wraps
 
 def count_calls(method: Callable) -> Callable:
     """ count calls method decorator """
+    method_name = method.__qualname__  # store the name of the method
 
     @wraps(method)
     def wrapper(self, *args, **kwargs):
         """ count how many times methods of the Cache class are called """
-        method_name = method.__qualname__  # store the name of the method
         self._redis.incr(method_name)  # increment counter associated to name
         value = method(self, *args, **kwargs)  # call original meth & store it
         return value
