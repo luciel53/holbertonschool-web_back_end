@@ -19,7 +19,7 @@ class Cache:
         self._redis.set(random_key, data)  # associate the value to the key
         return random_key
 
-    def get(self, key: str, fn: Callable) -> Union[str, Callable, bytes, int,
+    def get(self, key: str, fn: Callable=None) -> Union[str, Callable, bytes, int,
                                                    float]:
         """ method that returns the value of the given key from the db """
         value = self._redis.get(key)  # get the value with the key
