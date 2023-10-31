@@ -97,3 +97,12 @@ class Cache:
         """ parametrize value from redis to int """
         numb = int(self._redis.get(key))
         return numb
+
+
+if __name__ == "__main__":
+    cache = Cache()
+
+    cache.store("foo")
+    cache.store("bar")
+
+    cache.replay(cache.store)
