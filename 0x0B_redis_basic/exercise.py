@@ -63,7 +63,7 @@ def replay(self, method: Callable) -> Callable:
     for data_i, data_o in zip(input_list, output_list):
         input_str = data_i.encode('utf-8')
         output_str = data_o.encode('utf-8')
-        print("{} {}".format(input_str, output_str))
+        print("{} -> {}".format(input_str, output_str))
 
 
 class Cache:
