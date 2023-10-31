@@ -55,8 +55,12 @@ def replay(self, method: Callable) -> Callable:
     calls = len(input_list)
 
     print("{} was called {} times:".format(method.__qualname__, calls))
+
     # zip input and output lists
-    self._redis.zip(input_list, output_list)
+    for data_i, data_o in zip(input_list, output_list):
+        input_str = data_i.encode('utf-8')
+        output_str = data_o.encode('utf-8')
+        print("{} {}".format(input_str, output_str))
 
 
 class Cache:
