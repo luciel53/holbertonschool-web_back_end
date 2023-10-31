@@ -51,6 +51,9 @@ def replay(self, method: Callable) -> Callable:
     # Output list
     output_list = self._redis.lrange(output, 0, -1)
 
+    if len(input_list) != len(output_list):
+        raise ValueError('Input and Output len are different')
+
     # calls
     calls = len(input_list)
 
