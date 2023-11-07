@@ -14,6 +14,7 @@ collection = client.logs.nginx
 # first line
 numb_docs = collection.count_documents({})
 print("{} logs".format(numb_docs))
+print("Methods:")
 
 # second line
 method = ["GET", "POST", "PUT", "PATCH", "DELETE"]
