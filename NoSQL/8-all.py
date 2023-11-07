@@ -10,7 +10,7 @@
 
 def list_all(mongo_collection):
     """ function to list all documents in the collection """
-    docs_in_collection = list(mongo_collection.find())
+    docs_in_collection = mongo_collection.find()
     if docs_in_collection.count() == 0:
         return []
     return docs_in_collection
