@@ -13,13 +13,13 @@ db = client["logs"]
 collection = db["nginx"]
 
 # first line
-numb_docs = collection.count
+numb_docs = collection.count_documents({})
 
 # second line
 method = ["GET", "POST", "PUT", "PATCH", "DELETE"]
-for i in range(method):
-    numb_each_method = collection.count({"method": method})
+for meth in method:
+    numb_each_method = collection.count_documents({"method": method})
     print("{}: {}".format(method, numb_each_method))
 
-get_count = collection.count({"method": "GET", "path": "/status"})
+get_count = collection.count_documents({"method": "GET", "path": "/status"})
 print("{}: {}".format(method, get_count))
