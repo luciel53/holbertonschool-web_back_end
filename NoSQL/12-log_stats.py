@@ -22,7 +22,7 @@ if __name__ == "__main__":
     method = ["GET", "POST", "PUT", "PATCH", "DELETE"]
     for meth in method:
         numb_each_method = collection.count_documents({"method": meth})
-        print("method {}: {}".format(meth, numb_each_method))
+        print("\tmethod {}: {}".format(meth, numb_each_method))
 
     get_count = collection.count_documents({"method": "GET",
                                             "path": "/status"})
