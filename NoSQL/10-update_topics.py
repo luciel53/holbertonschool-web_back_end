@@ -13,8 +13,5 @@
 
 def update_topics(mongo_collection, name, topics):
     """ function taht changes all topics of a document based on name """
-    query = mongo_collection.find({ "name" : name })
-    topics_to_update = { "$set" : topics }
-    to_update = mongo_collection.update_many(query, topics_to_update)
-
-    return to_update.modified_count
+    updated = mongo_collection.updateMany( { "name": name }, { "$set" : topics})
+    return updated
