@@ -9,8 +9,7 @@ from pymongo import MongoClient
 
 client = MongoClient(host="localhost", port=27017)
 
-db = client["logs"]
-collection = db["nginx"]
+collection = client.logs.nginx
 
 # first line
 numb_docs = collection.count_documents({})
