@@ -19,7 +19,7 @@ numb_docs = collection.count_documents({})
 method = ["GET", "POST", "PUT", "PATCH", "DELETE"]
 for meth in method:
     numb_each_method = collection.count_documents({"method": meth})
-    print(numb_each_method)
+    print("{}: {}".format(meth, numb_each_method))
 
 get_count = collection.count_documents({"method": "GET", "path": "/status"})
-print(get_count)
+print("{} status check".format(get_count))
