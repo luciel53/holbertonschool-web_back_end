@@ -2,7 +2,7 @@ export default function taskBlock(trueOrFalse) {
   const task = false;
   const task2 = true;
   if (trueOrFalse) {
-    /* no-unused-vars */
+    /*no-unused-vars*/
     const task = true;
     const task2 = false;
   }
