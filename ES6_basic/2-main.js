@@ -1,5 +1,6 @@
 import getNeighborhoodsList from './2-arrow.js';
 
-const neighborhoodsList = new getNeighborhoodsList();
-const res = neighborhoodsList.addNeighborhood('Noe Valley');
-console.log(res);
+test('returns the list of neighborhoods', () => {
+  const neighborhoodsList = new getNeighborhoodsList();
+  expect(neighborhoodsList.addNeighborhood('Tenderloin')).toEqual(['SOMA', 'Union Square', 'Tenderloin']);
+});
