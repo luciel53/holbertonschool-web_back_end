@@ -6,9 +6,9 @@ export default function handleProfileSignUp(firstName, lastName, fileName) {
   const file = uploadPhoto(fileName);
 
   return Promise.all([user, file]).then((res) => {
-    return res.map(res => ({
+    return res.map((res) => ({
       status: res.status,
-      value: res.status === 'ok' ? res.value : res.console.error('ERROR'),
-    }))
+      value: res.status === 'ok' ? res.value : `Error: ${res.status}`,
+    }));
   });
-};
+}
