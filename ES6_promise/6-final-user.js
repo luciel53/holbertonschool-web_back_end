@@ -8,7 +8,7 @@ export default function handleProfileSignUp(firstName, lastName, fileName) {
   return Promise.all([user, file]).then((res) => {
     return res.map((res) => ({
       status: res.status,
-      value: res.status === 'ok' ? res.value : `Error: ${res.reason.message}`,
+      value: res.status === 'fulfilled' ? res.value : `Error: ${res.reason.message}`,
     }));
   });
 }
