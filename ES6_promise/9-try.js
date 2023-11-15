@@ -1,5 +1,5 @@
 export default function guardrail(mathFunction) {
-  let queue = [];
+  const queue = [];
   let value;
   try {
     value = mathFunction();
@@ -8,5 +8,5 @@ export default function guardrail(mathFunction) {
   }
   queue.push(value);
   queue.push('Guardrail was processed');
-  return queue
+  return queue;
 }
