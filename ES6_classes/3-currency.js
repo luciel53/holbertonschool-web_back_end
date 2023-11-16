@@ -9,8 +9,8 @@ export default class Currency {
   }
 
   set code(value) {
-    const val = this._code = value;
-    return val;
+    this._code = value;
+
   }
 
   get name() {
@@ -18,8 +18,7 @@ export default class Currency {
   }
 
   set name(value) {
-    const val = this._name = value;
-    return val;
+    this._name = value;
   }
 
   displayFullCurrency() {
