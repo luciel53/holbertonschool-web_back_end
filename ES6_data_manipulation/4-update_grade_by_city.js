@@ -6,9 +6,9 @@ export default function updateStudentGradeByCity(getListStudents, city, newGrade
       return {
         ...student,
         grade: matchGrade ? matchGrade.grade : 'N/A',
-      }
+      };
     });
     return studentsGradeByCity;
   }
-  return "N/A";
+  return 'N/A';
 }
