@@ -3,8 +3,7 @@ export default function cleanSet(set, startString) {
   set.forEach((value) => {
     if (startString === '' || !startString || typeof startString !== 'string') {
       text = '';
-    }
-    else if (typeof value === 'string' && value.includes(startString)) {
+    } else if (typeof value === 'string' && value.includes(startString)) {
       const deletePartString = value.substring(startString.length);
       text += `${deletePartString}-`;
     }
