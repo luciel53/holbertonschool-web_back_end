@@ -1,7 +1,7 @@
 export default function cleanSet(set, startString) {
   let text = '';
   set.forEach((value) => {
-    if (startString === '' || !startString) {
+    if (startString === '' || !startString || typeof startString !== 'string') {
       text = '';
     } else if (value.startsWith(startString)) {
       const deletePartString = value.substring(startString.length);
