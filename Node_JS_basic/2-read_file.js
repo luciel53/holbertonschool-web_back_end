@@ -1,7 +1,6 @@
 function countStudents(path) {
-  // eslint-disable-line global-require
-  const fs = require('fs');
   try {
+	const fs = require('fs');
     const db = fs.readFileSync(path, 'utf8');
     const byLine = db.split('\n').filter((line) => line.trim() !== '');
     let totalStudents = 0;
@@ -19,7 +18,7 @@ function countStudents(path) {
         if (studentsByField[field][firstname] === undefined) {
           studentsByField[field][firstname] = 1; // Add firstname to this field's list with count 1
         } else {
-          studentsByField[field][firstname] += 1; // Increment count for this firstname in this field
+          studentsByField[field][firstname] += 1; // Increment count for firstname in this field
         }
       }
       totalStudents += 1;
@@ -27,10 +26,12 @@ function countStudents(path) {
 
     console.log(`Number of students: ${totalStudents}`);
     for (const field in studentsByField) {
-      const firstnameByField = Object.keys(studentsByField[field]);
-      console.log(
-        `Number of students in ${field}: ${Object.values(studentsByField[field]).reduce((a, b) => a + b, 0)}. List: ${firstnameByField.join(', ')}`,
-      );
+      if (studentsByField.hasOwnProperty(field)) {
+        const firstnameByField = Object.keys(studentsByField[field]);
+        console.log(
+          `Number of students in ${field}: ${Object.values(studentsByField[field]).reduce((a, b) => a + b, 0)}. List: ${firstnameByField.join(', ')}`,
+        );
+      }
     }
   } catch (error) {
     throw new Error('Cannot load the database');
