@@ -7,11 +7,11 @@ describe('calculateNumber', () => {
   });
 
   it('should return a rounded for first number float', () => {
-    assert.equal(calculateNumber(2.8, 2), 5);
+    assert.strictEqual(calculateNumber(2.8, 2), 5);
   });
 
   it('should return a rounded for second number float', () => {
-    assert.equal(calculateNumber(3, 3.7), 7);
+    assert.strictEqual(calculateNumber(3, 3.7), 7);
   });
 
   it('should return a rounded for both numbers float', () => {
