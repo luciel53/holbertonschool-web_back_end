@@ -3,7 +3,7 @@ const calculateNumber = require('./0-calcul.js');
 
 describe('calculateNumber', () => {
   it('should return the sum of 2 integers', () => {
-    assert.equal(calculateNumber(1, 3), 4);
+    assert.strictEqual(calculateNumber(1, 3), 4);
   });
 
   it('should return the rounded sum when first number is a float', () => {
