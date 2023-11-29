@@ -16,7 +16,7 @@ describe('calculateNumber', () => {
 
   it('should return the rounded for both numbers float', () => {
     assert.strictEqual(calculateNumber(1.2, 3.7), 5);
-	assert.strictEqual(calculateNumber(1.5, 3.7), 6);
+    assert.strictEqual(calculateNumber(1.5, 3.7), 6);
   });
 
 })
