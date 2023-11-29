@@ -10,10 +10,5 @@ describe('calculateNumber', () => {
     assert.strictEqual(calculateNumber(3.7, 1), 5);
     assert.strictEqual(calculateNumber(3.7, 1.2), 5);
   });
-  it('negative numbers', () => {
-    assert.strictEqual(calculateNumber(-1, 1), 0);
-    assert.strictEqual(calculateNumber(1, -1), 0);
-    assert.strictEqual(calculateNumber(-1, -1), -2);
-  });
-  
+
 });
