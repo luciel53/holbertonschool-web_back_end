@@ -8,6 +8,7 @@ describe('sendPaymentRequestToApi to test', () => {
   it('should send payment request to API', () => {
     const spyCalcNum = sinon.spy(Utils, 'calculateNumber');
     sendPaymentRequestToApi(100, 20);
+    expect(spyCalcNum.calledOnce).to.be.true;
     expect(spyCalcNum.calledWith('SUM', 100, 20)).to.be.true;
     spyCalcNum.restore();
   });
