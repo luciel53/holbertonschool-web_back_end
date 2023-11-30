@@ -10,9 +10,9 @@ describe('sendPaymentRequestToApi to test', () => {
   it('should call Utils.calculateNumber with type = SUM, a = 100, and b = 20', () => {
     const res = sendPaymentRequestToApi(100, 20);
     expect(stubCalcNum.calledWithExactly('SUM', 100, 20)).to.equal(true);
-    expect(spyCalcNum).calledWithExactly('The total is: 10');
+    expect(spyCalcNum.calledWithExactly('The total is: 10')).to.be.true;
     expect(Utils.calculateNumber('SUM', 100, 20)).to.equal(res);
 	spyCalcNum.restore();
 	stubCalcNum = restore();
-});
+  });
 });
