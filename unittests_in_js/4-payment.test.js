@@ -9,8 +9,8 @@ describe('sendPaymentRequestToApi to test', () => {
   it('should call Utils.calculateNumber with type = SUM, a = 100, and b = 20', () => {
     let stubCalcNum = sinon.stub(Utils, 'calculateNumber').returns(10);
     sendPaymentRequestToApi(100, 20);
-    expect(stubCalcNum.calledWithExactly('SUM', 100, 20)).to.equal(true);
-    expect(spyCalcNum.calledWithExactly('The total is: 10')).to.be.true;
+    expect(stubCalcNum.calledOnceWithExactly('SUM', 100, 20)).to.equal(true);
+    expect(spyCalcNum.calledOnceWithExactly('The total is: 10')).to.be.true;
     spyCalcNum.restore();
     stubCalcNum = restore();
   });
