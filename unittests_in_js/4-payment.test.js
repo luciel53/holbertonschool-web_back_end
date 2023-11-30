@@ -11,7 +11,7 @@ describe('sendPaymentRequestToApi to test', () => {
     const res = sendPaymentRequestToApi(100, 20);
     expect(stubCalcNum.calledWithExactly('SUM', 100, 20)).to.be.true;
     expect(spyCalcNum).calledWithExactly('The total is: 10');
-    expectexpect(stubCalcNum.calledWithExactly('SUM', 100, 20)).to.equal(res);
+    expect(stubCalcNum.calledWithExactly('SUM', 100, 20)).to.equal(res);
   });
   spyCalcNum.restore();
   stubCalcNum = restore();
