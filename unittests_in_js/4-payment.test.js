@@ -12,7 +12,7 @@ describe('sendPaymentRequestToApi to test', () => {
     expect(stubCalcNum.calledWithExactly('SUM', 100, 20)).to.equal(true);
     expect(spyCalcNum).calledWithExactly('The total is: 10');
     expect(Utils.calculateNumber('SUM', 100, 20)).to.equal(res);
-  });
-  spyCalcNum.restore();
-  stubCalcNum = restore();
+	spyCalcNum.restore();
+	stubCalcNum = restore();
+});
 });
