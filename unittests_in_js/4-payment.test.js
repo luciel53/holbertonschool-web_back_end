@@ -12,6 +12,6 @@ describe('sendPaymentRequestToApi to test', () => {
     expect(stubCalcNum.calledOnceWithExactly('SUM', 100, 20)).to.equal(true);
     expect(spyCalcNum.calledOnceWithExactly('The total is: 10')).to.be.true;
     spyCalcNum.restore();
-    stubCalcNum = restore();
+    stubCalcNum.restore();
   });
 });
