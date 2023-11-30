@@ -10,7 +10,7 @@ describe('sendPaymentRequestToApi to test', () => {
   it('should call Utils.calculateNumber with type = SUM, a = 100, and b = 20', () => {
     sendPaymentRequestToApi(100, 20);
     expect(stubCalcNum.calledWithExactly('SUM', 100, 20)).to.be.true;
-    expect(spyCalcNum).called('The total is: 10');
+    expect(spyCalcNum).calledWithExactly('The total is: 10');
   });
   spyCalcNum.restore();
   stubCalcNum = restore();
