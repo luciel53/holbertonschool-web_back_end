@@ -5,8 +5,9 @@ const Utils = require('./utils');
 const sendPaymentRequestToApi = require('./5-payment');
 
 describe('sendPaymentRequestToApi to test', () => {
+  let spy;
   beforeEach(() => {
-    let spy = sinon.spy(console, 'log');
+    spy = sinon.spy(console, 'log');
   });
 
   afterEach(() => {
