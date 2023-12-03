@@ -33,7 +33,7 @@ describe('GET /cart/:id', () => {
   const apiError = 'http://localhost:7865/cart/hello';
   it('should raise an error of id not a number', (done) => {
     request.get(apiError, (error, response, body) => {
-      expect(body).to.equal(404);
+      expect(response.statusCode).to.equal(404);
       done();
     });
   });
