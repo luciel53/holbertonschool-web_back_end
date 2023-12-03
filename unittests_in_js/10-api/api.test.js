@@ -41,9 +41,15 @@ describe('GET /cart/:id', () => {
 
 describe('/login endpoint', () => {
   const apiLogin = 'http://localhost:7865/login';
+  const username = 'Betty';
   it('should test username login', (done) => {
-    request.post(apiLogin, (error, response, body) => {
-      expect(body).to.equal(`Welcome ${userName}`);
+    request.post(
+      {
+        url: apiLogin,
+        json: { userName: username },
+       },
+      (error, response, body) => {
+      expect(body).to.equal(`Welcome ${username}`);
       done();
     });
   })
@@ -53,12 +59,13 @@ describe('/available_payments', () => {
   const apiAvPay = 'http://localhost:7865/available_payments';
   it('/available_payments endpoint test', (done) => {
     request.get(apiAvPay, (error, response, body) => {
-      expect(body).to.deep.equal({
+      const expResponse = {
         payment_methods: {
           credit_cards: true,
-          paypal: false
-        }
-      });
+          paypal: false,
+        },
+      }
+      expect(JSON.parse(body)).to.deep.equal(expResponse);
       done();
     });
   })
